@@ -1,4 +1,7 @@
 {
+  "bin": {
+    "machine-ip": "bin/machine-ip.js"
+  },
   "name": "machine-ip",
   "description": "Push the machine public IP in a git repo.",
   "keywords": [
@@ -38,5 +41,84 @@
   },
   "bugs": {
     "url": "https://github.com/IonicaBizau/machine-ip/issues"
-  }
+  },
+  "dependencies": {
+    "bug-killer": "^4.4.4",
+    "gry": "^5.0.6",
+    "ipinfo": "^1.3.7",
+    "json2md": "^1.5.8",
+    "one-by-one": "^3.2.5",
+    "tilda": "^4.4.10",
+    "w-json": "^1.3.7"
+  },
+  "blah": {
+      "description": [
+          { "h2": "How to use" },
+          {
+              "ol": [
+                  "Create a GitHub repository",
+                  "Clone it locally",
+                  "`cd` into that directory",
+                  "Run `machine-ip`",
+                  "If it works, you should see some IP information in the GitHub repository.",
+                  "Run automatically as a cron job (e.g. every hour)."
+              ]
+          },
+          { "h2": "Why?" },
+          { "p": [
+              "When traveling, I do not have access to my home computer. It is a powerful machine with a fast internet connection.",
+              "Also, I do not have a static public ip assigned to that network. The machine does get a static ip from the router. The router does port forwarding on a specific range.",
+              "SSH is running on it and it listens on a specific port, exposed in the router.",
+              "Whereever I am, I can now `ssh` to my home computer and do tasks that require more performance (e.g. AI training etc).",
+              "Just in case the public ip is going to change, I will see it in my GitHub repository."
+            ]
+          },
+          { "h2": "Getting a static ip from the router" },
+          {
+              "p": [
+                  "For posterity, this is my `/etc/network/interfaces` file:",
+                  "```",
+                  "auto lo",
+                  "iface lo inet loopback",
+                  "",
+                  "auto enp5s0",
+                  "iface enp5s0 inet static",
+                  "address 192.168.2.xxx",
+                  "netmask 255.255.255.0",
+                  "gateway 192.168.2.1",
+                  "dns-nameservers 8.8.8.8 192.168.1.1",
+                  "```"
+              ]
+          },
+          { "h2": "Listening for ssh connections" },
+          {
+              "p": [
+                "In `/etc/ssh/sshd_config`, change the `Port` value to whatever value you want",
+                "```",
+                "Port 4242",
+                "```",
+                "**Do use SSH keys for authentication, instead of passwords.**"
+              ]
+          },
+          { "h2": "Connecting" },
+          {
+              "code": {
+                  "language": "sh",
+                  "content": [
+                      "ssh -A <username>@<public-ip> -p <port>"
+                  ]
+              }
+          },
+          { "h2": "Cron job" },
+          {
+              "p": [
+                  "I added the cron job by running `crontab -e` and writing in that file:",
+                  "```",
+                  "# Min Hour Day Month Weekday Command",
+                  "*/1   *    *   *     *       cd /home/.../Documents/notebook && machine-ip",
+                  "```"
+              ]
+          }
+       ]
+    }
 }
