@@ -3,7 +3,7 @@
     "machine-ip": "bin/machine-ip.js"
   },
   "name": "machine-ip",
-  "description": "Push the machine public IP in a git repo.",
+  "description": "Update your public ip information in a git repository.",
   "keywords": [
     "machine",
     "ip",
@@ -119,6 +119,9 @@
                   "```"
               ]
           }
+       ],
+       "related": [
+           "ipinfo"
        ]
     }
 }
