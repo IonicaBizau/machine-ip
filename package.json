@@ -75,31 +75,38 @@
           },
           { "h2": "Getting a static ip from the router" },
           {
-              "p": [
-                  "For posterity, this is my `/etc/network/interfaces` file:",
-                  "```",
-                  "auto lo",
-                  "iface lo inet loopback",
-                  "",
-                  "auto enp5s0",
-                  "iface enp5s0 inet static",
-                  "address 192.168.2.xxx",
-                  "netmask 255.255.255.0",
-                  "gateway 192.168.2.1",
-                  "dns-nameservers 8.8.8.8 192.168.1.1",
-                  "```"
-              ]
+              "p": "For posterity, this is my `/etc/network/interfaces` file:"
+          },
+          {
+              "code": {
+                  "language": "",
+                  "content": [
+                      "auto lo",
+                      "iface lo inet loopback",
+                      "",
+                      "auto enp5s0",
+                      "iface enp5s0 inet static",
+                      "address 192.168.2.xxx",
+                      "netmask 255.255.255.0",
+                      "gateway 192.168.2.1",
+                      "dns-nameservers 8.8.8.8 192.168.1.1",
+                      "```"
+                ]
+              }
           },
           { "h2": "Listening for ssh connections" },
           {
-              "p": [
-                "In `/etc/ssh/sshd_config`, change the `Port` value to whatever value you want",
-                "```",
-                "Port 4242",
-                "```",
-                "**Do use SSH keys for authentication, instead of passwords.**"
-              ]
+              "p": "In `/etc/ssh/sshd_config`, change the `Port` value to whatever value you want"
           },
+          {
+              "code": {
+                  "language": "",
+                  "content": [
+                    "Port 4242"
+                  ]
+              }
+          },
+          { "p": "**Do use SSH keys for authentication, instead of passwords.**" },
           { "h2": "Connecting" },
           {
               "code": {
@@ -111,13 +118,16 @@
           },
           { "h2": "Cron job" },
           {
-              "p": [
-                  "I added the cron job by running `crontab -e` and writing in that file:",
-                  "```",
-                  "# Min Hour Day Month Weekday Command",
-                  "*/1   *    *   *     *       cd /home/.../Documents/notebook && machine-ip",
-                  "```"
-              ]
+              "p": "I added the cron job by running `crontab -e` and writing in that file:"
+          },
+          {
+              "code": {
+                  "language": "cron",
+                  "content": [
+                      "# Min Hour Day Month Weekday Command",
+                      "*/1   *    *   *     *       cd /home/.../Documents/notebook && machine-ip"
+                  ]
+              }
           }
        ],
        "related": [

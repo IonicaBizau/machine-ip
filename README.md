@@ -3,7 +3,7 @@
 
  [![Support me on Patreon][badge_patreon]][patreon] [![Buy me a book][badge_amazon]][amazon] [![PayPal][badge_paypal_donate]][paypal-donations] [![Version](https://img.shields.io/npm/v/machine-ip.svg)](https://www.npmjs.com/package/machine-ip) [![Downloads](https://img.shields.io/npm/dt/machine-ip.svg)](https://www.npmjs.com/package/machine-ip)
 
-> Push the machine public IP in a git repo.
+> Update your public ip information in a git repository.
 
 ## How to use
 
@@ -31,35 +31,23 @@ Just in case the public ip is going to change, I will see it in my GitHub reposi
 For posterity, this is my `/etc/network/interfaces` file:
 
 ```
-
 auto lo
-
 iface lo inet loopback
 
-
-
 auto enp5s0
-
 iface enp5s0 inet static
-
 address 192.168.2.xxx
-
 netmask 255.255.255.0
-
 gateway 192.168.2.1
-
 dns-nameservers 8.8.8.8 192.168.1.1
-
 ```
-
+```
 ## Listening for ssh connections
 
 In `/etc/ssh/sshd_config`, change the `Port` value to whatever value you want
 
 ```
-
 Port 4242
-
 ```
 
 **Do use SSH keys for authentication, instead of passwords.**
@@ -72,14 +60,10 @@ ssh -A <username>@<public-ip> -p <port>
 
 I added the cron job by running `crontab -e` and writing in that file:
 
-```
-
+```cron
 # Min Hour Day Month Weekday Command
-
 */1   *    *   *     *       cd /home/.../Documents/notebook && machine-ip
-
 ```
-
 
 ## :cloud: Installation
 
@@ -98,7 +82,7 @@ Then, run `machine-ip --help` and see what the CLI tool can do.
 $ machine-ip --help
 Usage: machine-ip [options]
 
-Push the machine public IP in a git repo.
+Update your public ip information in a git repository.
 
 Options:
   -v, --version  Displays version information.

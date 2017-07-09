@@ -2,13 +2,15 @@
 
 You can see below the API reference of this module.
 
-### `machineIp(a, b)`
-Push the machine public IP in a git repo.
+### `machineIp(cb)`
+Fetches the ip and creates the following files:
+
+   - `README.md`: The human readable information.
+   - `ip.json`: The machine readable information.
+   - `ip.txt`: The public ip written in a file.
+
+If any of these is changed, the git repository is updated.
 
 #### Params
-- **Number** `a`: Param descrpition.
-- **Number** `b`: Param descrpition.
-
-#### Return
-- **Number** Return description.
+- **Function** `cb`: The callback function.
 
