@@ -61,8 +61,24 @@ ssh -A <username>@<public-ip> -p <port>
 I added the cron job by running `crontab -e` and writing in that file:
 
 ```cron
+SHELL=/bin/sh
+PATH=/home/testing/.nvm/versions/node/v6.7.0/bin:/home/testing/bin:/home/testing/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bi
+
 # Min Hour Day Month Weekday Command
-*/1   *    *   *     *       cd /home/.../Documents/notebook && machine-ip
+*/10  *    *   *     *       /johnnysapps/ip
+```
+
+The `/johnnysapps/ip` script contains. This is executed every 10 minutes. In case the electricity goes down, I assume the laptop battery will resist for an hour or so until the electricity is back.
+
+```sh
+echo "Adding the ssh key"
+ssh-add /home/testing/.ssh/id_rsa
+echo "Changing directory"
+cd /johnnysapps/notebook
+ls
+echo "Getting the ip"
+date > last_updated.txt
+machine-ip
 ```
 
 ## :cloud: Installation
