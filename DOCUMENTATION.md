@@ -12,5 +12,6 @@ Fetches the ip and creates the following files:
 If any of these is changed, the git repository is updated.
 
 #### Params
+
 - **Function** `cb`: The callback function.
 
