@@ -9,6 +9,7 @@
 
 ## How to use
 
+
  1. Create a GitHub repository
  2. Clone it locally
  3. `cd` into that directory
@@ -17,6 +18,7 @@
  6. Run automatically as a cron job (e.g. every hour).
 
 ## Why?
+
 
 When traveling, I do not have access to my home computer. It is a powerful machine with a fast internet connection.
 
@@ -29,6 +31,7 @@ Whereever I am, I can now `ssh` to my home computer and do tasks that require mo
 Just in case the public ip is going to change, I will see it in my GitHub repository.
 
 ## Getting a static ip from the router
+
 
 For posterity, this is my `/etc/network/interfaces` file:
 
@@ -44,7 +47,9 @@ gateway 192.168.2.1
 dns-nameservers 8.8.8.8 192.168.1.1
 ```
 ```
+
 ## Listening for ssh connections
+
 
 In `/etc/ssh/sshd_config`, change the `Port` value to whatever value you want
 
@@ -52,13 +57,17 @@ In `/etc/ssh/sshd_config`, change the `Port` value to whatever value you want
 Port 4242
 ```
 
+
 **Do use SSH keys for authentication, instead of passwords.**
 
 ## Connecting
+
 ```sh
 ssh -A <username>@<public-ip> -p <port>
 ```
+
 ## Cron job
+
 
 I added the cron job by running `crontab -e` and writing in that file:
 
@@ -69,6 +78,7 @@ PATH=/home/testing/.nvm/versions/node/v6.7.0/bin:/home/testing/bin:/home/testing
 # Min Hour Day Month Weekday Command
 */10  *    *   *     *       /johnnysapps/ip
 ```
+
 
 The `/johnnysapps/ip` script contains. This is executed every 10 minutes. In case the electricity goes down, I assume the laptop battery will resist for an hour or so until the electricity is back.
 
@@ -83,13 +93,18 @@ date > last_updated.txt
 machine-ip
 ```
 
+
 ## :cloud: Installation
 
 You can install the package globally and use it as command line tool:
 
 
 ```sh
-$ npm i -g machine-ip
+# Using npm
+npm install --global machine-ip
+
+# Using yarn
+yarn global add machine-ip
 ```
 
 
